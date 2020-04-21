@@ -26,10 +26,13 @@ public class Run {
         Future<Integer> future = executor.submit(task);
         System.out.println("future done? " + future.isDone());
 
+        // executor.shutdownNow(); *none terminated future will through an exception if shutdownNow is call before get*
+
         Integer result = future.get();
 
         System.out.println("future done? " + future.isDone());
         System.out.print("result: " + result);
+
 
 
     }
