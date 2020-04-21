@@ -1,7 +1,6 @@
 package callable_future;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * Created by Bushy-Netshidaulu
@@ -9,8 +8,9 @@ import java.util.concurrent.TimeUnit;
  */
 public class Run {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
 
+        //This lambda expression defines a callable returning an integer after sleeping for one second:
         Callable<Integer> task = ()-> {
             try {
                 TimeUnit.SECONDS.sleep(1);
@@ -21,7 +21,15 @@ public class Run {
         };
 
 
+        ExecutorService executor = Executors.newFixedThreadPool(1);
 
+        Future<Integer> future = executor.submit(task);
+        System.out.println("future done? " + future.isDone());
+
+        Integer result = future.get();
+
+        System.out.println("future done? " + future.isDone());
+        System.out.print("result: " + result);
 
 
     }
