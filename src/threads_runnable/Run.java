@@ -1,5 +1,9 @@
 package threads_runnable;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * Created by Bushy-Netshidaulu
  * on 4/21/2020
@@ -15,6 +19,10 @@ public class Run {
 
         thread.start();
 
+        //excecuterService
+
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        executorService.submit(task);
 
     }
 }
