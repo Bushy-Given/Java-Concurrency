@@ -24,6 +24,30 @@ public class scheduled_executors {
         System.out.printf("Remaining Delay: %sms", remainingDelay);
 
 
+        //scheduleAtFixedRate
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+
+        Runnable task1 = () -> System.out.println("Scheduling: " + System.nanoTime());
+
+        int initialDelay = 0;
+        int period = 1;
+        executor.scheduleAtFixedRate(task1, initialDelay, period, TimeUnit.SECONDS);
+
+
+        //scheduleWithFixedDelay
+        ScheduledExecutorService executor2 = Executors.newScheduledThreadPool(1);
+
+        Runnable task2 = () -> {
+            try {
+                TimeUnit.SECONDS.sleep(2);
+                System.out.println("Scheduling: " + System.nanoTime());
+            }
+            catch (InterruptedException e) {
+                System.err.println("task interrupted");
+            }
+        };
+
+        executor2.scheduleWithFixedDelay(task2, 0, 1, TimeUnit.SECONDS);
 
     }
 }
